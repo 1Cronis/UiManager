@@ -1,4 +1,6 @@
-public enum TypeView
+public enum StateView
 {
-    None,
+    Show,
+    Hide,
+    AllHide,
 }

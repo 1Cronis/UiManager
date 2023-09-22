@@ -1,12 +1,18 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class BaseView : MonoBehaviour
+public abstract class UIBaseView : MonoBehaviour
 {
     private Canvas canvas;
 
-    protected object Context { get; private set; }
+    protected object Data { get; private set; }
+
     public bool IsVisible => canvas.enabled;
+    public int Order 
+    {
+        get{ return canvas.sortingOrder; }
+        set { canvas.sortingOrder = value; }
+    }
 
     private void Awake()
     {
@@ -18,9 +24,9 @@ public abstract class BaseView : MonoBehaviour
 
     public abstract void UiDisable();
 
-    public void Show(object context = null)
+    public void Show(object data = null)
     {
-        Context = context;
+        Data = data;
 
         UiEnable();
         canvas.enabled = true;
