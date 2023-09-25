@@ -1,13 +1,12 @@
-using System;
+
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 
 public static class UiEventsSystem
 {
-    private static readonly Dictionary<StateView, UnityEvent> eventNoParam = new Dictionary<StateView, UnityEvent>();
-    private static readonly Dictionary<StateView, UnityEvent<object>> eventOneParam = new Dictionary<StateView, UnityEvent<object>>();
-    private static readonly Dictionary<StateView, UnityEvent<object, object>> eventTwoParam = new Dictionary<StateView, UnityEvent<object, object>>();
+    private static readonly Dictionary<StateView, UnityEvent> eventNoParam = new ();
+    private static readonly Dictionary<StateView, UnityEvent<object>> eventOneParam = new ();
+    private static readonly Dictionary<StateView, UnityEvent<object, object>> eventTwoParam = new ();
     
     public static void Subscribe<T1,T2>(StateView key, UnityAction<T1, T2> listener)
     {
@@ -80,7 +79,7 @@ public static class UiEventsSystem
         }
     }
 
-    public static void TriggerEvent<T1, T2>(StateView key, T1 param1, T2 param2 = default(T2))
+    public static void TriggerEvent<T1, T2>(StateView key, T1 param1, T2 param2)
     {
         UnityEvent<object, object> thisEvent = null;
         if (eventTwoParam.TryGetValue(key, out thisEvent))

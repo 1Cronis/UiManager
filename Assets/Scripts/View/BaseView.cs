@@ -61,7 +61,8 @@ public class BaseView : UIBaseView
         {
             if ((int)item != 0)
             {
-                buttons[i].onClick.AddListener( () => UiEventsSystem.TriggerEvent(StateView.Show, item, this));
+                //buttons[i].onClick.AddListener( () => TestUiEventsSystem.TriggerEvent(StateView.Show, item, this));
+                buttons[i].onClick.AddListener( () => Test2UiEventsSystem.Invoke(new TestEventView<TypeView>(StateView.Show, item, this)));
                 i++;
             }
         }

@@ -34,7 +34,7 @@ public class UiManager : MonoBehaviour
     {
         InstantiateView();
         SortView();
-        Show(defaultView);
+        Show(new TestEventView<TypeView>(StateView.Show,TypeView.LoadView,this));
         AddEvent();
 
     }
@@ -44,25 +44,27 @@ public class UiManager : MonoBehaviour
         RemoveEvent();
     }
 
-    private void Show(TypeView typeView, object data = null)
+    //private void Show(TypeView typeView, object data = null)
+    //{
+    //    if (typeView != TypeView.None)
+    //        View[(int)typeView - 1].prefab.Show();
+    //}
+
+    private void Show(TestEventView<TypeView> testEventView)
     {
-        if (typeView != TypeView.None)
-            View[(int)typeView - 1].prefab.Show();
+        if (testEventView.tEnum != TypeView.None)
+            View[(int)testEventView.tEnum - 1].prefab.Show();
     }
 
-    private void Hide(TypeView typeView)
+    private void Hide(TestEventView<TypeView> testEventView)
     {
-        if (typeView != TypeView.None)
-            View[(int)typeView - 1].prefab.Hide();
+        if (testEventView.tEnum != TypeView.None)
+            View[(int)testEventView.tEnum - 1].prefab.Hide();
     }
 
-    private void AllHide()
+    public void AllHide(TestEventView<TypeView> testEventView)
     {
-        foreach (TypeView item in Enum.GetValues(typeof(TypeView)))
-        {
-            if (item != TypeView.None)
-                Hide(item);
-        }
+        
     }
 
     private void InstantiateView()
@@ -92,16 +94,28 @@ public class UiManager : MonoBehaviour
 
     private void AddEvent()
     {
-        UiEventsSystem.Subscribe<TypeView, object>(StateView.Show, Show);
-        UiEventsSystem.Subscribe<TypeView>(StateView.Hide, Hide);
-        UiEventsSystem.Subscribe(StateView.AllHide, AllHide);
+
+        Test2UiEventsSystem.Subscribe(StateView.Show,Show);
+        Test2UiEventsSystem.Subscribe(StateView.Hide,Hide);
+        Test2UiEventsSystem.Subscribe(StateView.AllHide, AllHide);
+        //Test2UiEventsSystem.Subscribe(StateView.AllHide,new Action(AllHide));
+
+        //TestUiEventsSystem.Subscribe<TypeView>(StateView.Show, Show);
+        //TestUiEventsSystem.Subscribe<TypeView>(StateView.Hide, Hide);
+        //TestUiEventsSystem.Subscribe(StateView.AllHide, AllHide);
 
     }
+
     private void RemoveEvent()
     {
-        UiEventsSystem.Unsubscribe<TypeView, object>(StateView.Show, Show);
-        UiEventsSystem.Unsubscribe<TypeView>(StateView.Hide, Hide);
-        UiEventsSystem.Unsubscribe(StateView.AllHide, AllHide);
+        Test2UiEventsSystem.Unsubscribe(StateView.Show, Show);
+        Test2UiEventsSystem.Unsubscribe(StateView.Hide, Hide);
+        Test2UiEventsSystem.Unsubscribe(StateView.AllHide, AllHide);
+
+        //TestUiEventsSystem.Unsubscribe<TypeView>(StateView.Show, Show);
+        //TestUiEventsSystem.Unsubscribe<TypeView>(StateView.Hide,Hide);
+        //TestUiEventsSystem.Unsubscribe(StateView.AllHide, AllHide);
+
     }
 
    

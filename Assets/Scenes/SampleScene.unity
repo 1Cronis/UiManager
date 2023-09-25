@@ -574,7 +574,7 @@ MonoBehaviour:
     order: 5
   - type: 1
     prefab: {fileID: 5050163651647947504, guid: e643374949a59ff4cbf412dee8474958, type: 3}
-    order: 0
+    order: 6
   - type: 3
     prefab: {fileID: 7165187463847907171, guid: eaa4dde8251c508409db63fbd07b55fc, type: 3}
     order: 3

@@ -8,7 +8,7 @@ public class GameView : UIBaseView
     [SerializeField] Button closeButton;
     public override void UiEnable()
     {
-        closeButton.onClick.AddListener(() => UiEventsSystem.TriggerEvent(StateView.Hide, TypeView.GameView));
+        closeButton.onClick.AddListener(() => Test2UiEventsSystem.Invoke(new TestEventView<TypeView>(StateView.Hide,TypeView.GameView)));
     }
     public override void UiDisable()
     {

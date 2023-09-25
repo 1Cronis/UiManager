@@ -91,7 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabButton: {fileID: 2312613880479917357, guid: 3f8babadb05af4f4cac22ba5c3f3353b, type: 3}
-  closeButton: {fileID: 634172180437630473}
   heightButton: 35
 --- !u!1001 &2942264728976612132
 PrefabInstance:
@@ -103,6 +102,10 @@ PrefabInstance:
     - target: {fileID: 3043391202521306211, guid: 3f8babadb05af4f4cac22ba5c3f3353b, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043391202521306211, guid: 3f8babadb05af4f4cac22ba5c3f3353b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4899422711597754682, guid: 3f8babadb05af4f4cac22ba5c3f3353b, type: 3}
       propertyPath: m_Type
@@ -214,17 +217,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f8babadb05af4f4cac22ba5c3f3353b, type: 3}
---- !u!114 &634172180437630473 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2312613880479917357, guid: 3f8babadb05af4f4cac22ba5c3f3353b, type: 3}
-  m_PrefabInstance: {fileID: 2942264728976612132}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &4615332472455660374 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7555336209145550962, guid: 3f8babadb05af4f4cac22ba5c3f3353b, type: 3}

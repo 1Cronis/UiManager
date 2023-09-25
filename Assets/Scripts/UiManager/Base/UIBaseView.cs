@@ -8,6 +8,7 @@ public abstract class UIBaseView : MonoBehaviour
     protected object Data { get; private set; }
 
     public bool IsVisible => canvas.enabled;
+
     public int Order 
     {
         get{ return canvas.sortingOrder; }
