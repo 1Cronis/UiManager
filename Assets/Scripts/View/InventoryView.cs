@@ -8,11 +8,11 @@ public class InventoryView : UIBaseView
     [SerializeField] Button closeButton;
     public override void UiEnable()
     {
-        closeButton.onClick.AddListener(() => Test2UiEventsSystem.Invoke(new TestEventView<TypeView>(StateView.Hide, TypeView.InventoryView)));
+        //closeButton.onClick.AddListener(() => Test2UiEventsSystem.Invoke(new TestEventView<TypeView>(StateView.Hide, TypeView.InventoryView)));
     }
     public override void UiDisable()
     {
-        closeButton.onClick.RemoveAllListeners();
+        //closeButton.onClick.RemoveAllListeners();
     }
 
 }

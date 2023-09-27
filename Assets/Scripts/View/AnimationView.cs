@@ -8,7 +8,7 @@ public class AnimationView : UIBaseView
     [SerializeField] Button closeButton;
     public override void UiEnable()
     {
-        closeButton.onClick.AddListener(() => Test2UiEventsSystem.Invoke(new TestEventView<TypeView>(StateView.Hide, TypeView.AnimationView)));
+        //closeButton.onClick.AddListener(() => Test2UiEventsSystem.Invoke(new TestEventView<TypeView>(StateView.Hide, TypeView.AnimationView)));
     }
     public override void UiDisable()
     {

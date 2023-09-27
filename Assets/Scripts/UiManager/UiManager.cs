@@ -1,14 +1,7 @@
-using Sirenix.OdinInspector;
-using System;
-using UnityEngine;
-using System.Collections.Generic;
-using Sirenix.Utilities;
-using Unity.VisualScripting;
-using UnityEditor.IMGUI.Controls;
 
-public class UiManager : MonoBehaviour
+public class UiManager : UiManagerBase<TypeView>
 {
-    [Header("Root Canvas"), HideLabel]
+   /* [Header("Root Canvas"), HideLabel]
     [SerializeField] Canvas rootCanvas;
     //[Space(5)]
     [Header("Default View"), HideLabel]
@@ -34,51 +27,34 @@ public class UiManager : MonoBehaviour
     {
         InstantiateView();
         SortView();
-        Show(new TestEventView<TypeView>(StateView.Show,TypeView.LoadView,this));
+        Show(new TestEventView<TScrinEnum>(StateView.Show, defaultView, this));
         AddEvent();
 
     }
 
-    private void OnDisable()
+    private void Show(TestEventView<TScrinEnum> testEventView)
     {
-        RemoveEvent();
+        View[testEventView.tEnum.GetHashCode() - 1].prefab.Show();
     }
-
-    //private void Show(TypeView typeView, object data = null)
-    //{
-    //    if (typeView != TypeView.None)
-    //        View[(int)typeView - 1].prefab.Show();
-    //}
-
-    private void Show(TestEventView<TypeView> testEventView)
+    private void Hide(TestEventView<TScrinEnum> testEventView)
     {
-        if (testEventView.tEnum != TypeView.None)
-            View[(int)testEventView.tEnum - 1].prefab.Show();
+        View[testEventView.tEnum.GetHashCode() - 1].prefab.Hide();
     }
-
-    private void Hide(TestEventView<TypeView> testEventView)
+    public void AllHide()
     {
-        if (testEventView.tEnum != TypeView.None)
-            View[(int)testEventView.tEnum - 1].prefab.Hide();
-    }
 
-    public void AllHide(TestEventView<TypeView> testEventView)
-    {
-        
     }
-
     private void InstantiateView()
     {
-       
-        for (int x = 0; x <  View.Count; x++)
+
+        for (int x = 0; x < View.Count; x++)
         {
-            var view = Instantiate( View[x].prefab, rootCanvas.transform);
-            view.Order =  View[x].order;
+            var view = Instantiate(View[x].prefab, rootCanvas.transform);
+            view.Order = View[x].order;
             View[x].prefab = view;
         }
-       
-    }
 
+    }
     private void SortView()
     {
         var viewSort = new ViewData[View.Count + 1];
@@ -94,10 +70,11 @@ public class UiManager : MonoBehaviour
 
     private void AddEvent()
     {
+        allHideAction = e => AllHide();
+        UiEventsSystem.Subscribe<TScrinEnum>(StateView.Show, Show);
+        UiEventsSystem.Subscribe<TScrinEnum>(StateView.Hide, Hide);
+        UiEventsSystem.Subscribe(StateView.AllHide, allHideAction);
 
-        Test2UiEventsSystem.Subscribe(StateView.Show,Show);
-        Test2UiEventsSystem.Subscribe(StateView.Hide,Hide);
-        Test2UiEventsSystem.Subscribe(StateView.AllHide, AllHide);
         //Test2UiEventsSystem.Subscribe(StateView.AllHide,new Action(AllHide));
 
         //TestUiEventsSystem.Subscribe<TypeView>(StateView.Show, Show);
@@ -108,15 +85,13 @@ public class UiManager : MonoBehaviour
 
     private void RemoveEvent()
     {
-        Test2UiEventsSystem.Unsubscribe(StateView.Show, Show);
-        Test2UiEventsSystem.Unsubscribe(StateView.Hide, Hide);
-        Test2UiEventsSystem.Unsubscribe(StateView.AllHide, AllHide);
+        UiEventsSystem.Unsubscribe<TScrinEnum>(StateView.Show, Show);
+        UiEventsSystem.Unsubscribe<TScrinEnum>(StateView.Hide, Hide);
+        UiEventsSystem.Unsubscribe(StateView.AllHide, allHideAction);
 
         //TestUiEventsSystem.Unsubscribe<TypeView>(StateView.Show, Show);
         //TestUiEventsSystem.Unsubscribe<TypeView>(StateView.Hide,Hide);
         //TestUiEventsSystem.Unsubscribe(StateView.AllHide, AllHide);
 
-    }
-
-   
+    }*/
 }

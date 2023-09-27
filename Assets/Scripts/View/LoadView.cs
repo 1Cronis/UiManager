@@ -27,8 +27,8 @@ public class LoadView : UIBaseView
             yield return null;
         }
 
-        Test2UiEventsSystem.Invoke(new TestEventView<TypeView>(StateView.Hide, TypeView.LoadView, this));
-        Test2UiEventsSystem.Invoke(new TestEventView<TypeView>(StateView.Show, TypeView.BaseView, this));
+        UiEventsSystem.Invoke(new ViewEvent<TypeView>(StateView.Hide, TypeView.LoadView, this));
+        UiEventsSystem.Invoke(new ViewEvent<TypeView>(StateView.Show, TypeView.BaseView, this));
     }
 
 }
