@@ -27,7 +27,7 @@ public class UiManager : UiManagerBase<TypeView>
     {
         InstantiateView();
         SortView();
-        Show(new TestEventView<TScrinEnum>(StateView.Show, defaultView, this));
+        Show(new TestEventView<TScrinEnum>(StateView.Show, defaultView, this)); 
         AddEvent();
 
     }

@@ -10,6 +10,7 @@ public abstract class UiManagerBase<TViewEnum> : MonoBehaviour
     [SerializeField] Canvas rootCanvas;
     [Header("Default View"), HideLabel]
     [SerializeField] TViewEnum defaultView;
+    [Header("Give the ScriptsView names the same as the TypeView")]
     [Header("Prefab View"), HideLabel, TableList]
     [SerializeField] List<ViewData> View = new List<ViewData>();
 
@@ -24,21 +25,22 @@ public abstract class UiManagerBase<TViewEnum> : MonoBehaviour
 
         [TableColumnWidth(40, Resizable = true)]
         public int order = 0;
-        public Color color
+
+        private Color color
         {
             get
             {
-                if (type.GetHashCode() != 0 && prefab != null)
+                if (prefab != null)
                 {
-                    return Color.green;
-                }
-                else if (prefab != null && type.GetHashCode() == 0)
-                {
-                    return Color.red;
+                    if (type.ToString() == prefab.GetType().Name)
+                        return Color.green;
+                    else
+                        return Color.red;
                 }
                 return Color.white;
             }
         }
+
     }
     private System.Action<ViewEvent<TViewEnum>> allHideAction;
 
@@ -100,12 +102,16 @@ public abstract class UiManagerBase<TViewEnum> : MonoBehaviour
                     $" the object has already been added to the list");
             }
             else
+            {
                 viewSort[View[x].type.GetHashCode()] = View[x];
+            }
+                
         }
 
         for (int y = 0, a = 1; y < View.Count; y++, a++)
         {
             View[y] = viewSort[a];
+            
         }
 
     }
