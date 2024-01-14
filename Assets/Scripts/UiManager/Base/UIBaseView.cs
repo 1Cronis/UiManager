@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Canvas))]
 public abstract class UIBaseView : MonoBehaviour
 {
     private Canvas canvas;
@@ -17,6 +18,7 @@ public abstract class UIBaseView : MonoBehaviour
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.enabled = false;
     }
 

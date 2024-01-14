@@ -7,7 +7,7 @@ public abstract class UiManagerBase<TViewEnum> : MonoBehaviour
     where TViewEnum : System.Enum
 {
     [Header("Root Canvas"), HideLabel]
-    [SerializeField] Canvas rootCanvas;
+    [SerializeField] protected Canvas rootCanvas;
     [Header("Default View"), HideLabel]
     [SerializeField] TViewEnum defaultView;
     [Header("Give the ScriptsView names the same as the TypeView")]
