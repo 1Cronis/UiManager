@@ -20,11 +20,14 @@ public abstract class UIBaseView : MonoBehaviour
         canvas = GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.enabled = false;
+        initialize();
     }
 
     public abstract void UiEnable();
 
     public abstract void UiDisable();
+
+    public abstract void initialize();
 
     public void Show(object data = null)
     {
@@ -40,3 +43,4 @@ public abstract class UIBaseView : MonoBehaviour
         UiDisable();
     }
 }
+

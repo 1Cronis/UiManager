@@ -81,4 +81,8 @@ public class BaseView : UIBaseView
             }
         }
     }
+
+    public override void initialize()
+    {
+    }
 }

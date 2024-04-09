@@ -31,4 +31,8 @@ public class LoadView : UIBaseView
         UiEventsSystem.Invoke(new ViewEvent<TypeView>(StateView.Show, TypeView.BaseView, this));
     }
 
+    public override void initialize()
+    {
+
+    }
 }

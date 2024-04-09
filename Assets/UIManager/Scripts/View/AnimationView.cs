@@ -15,4 +15,7 @@ public class AnimationView : UIBaseView
         closeButton.onClick.RemoveAllListeners();
     }
 
+    public override void initialize()
+    {
+    }
 }
